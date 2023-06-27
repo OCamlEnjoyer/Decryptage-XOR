@@ -30,7 +30,7 @@ def HexToBinary(string):  # Nécessaire pour la distance de Hamming plus tard
     return final[::-1]
 
 
-# Fonction de cryptage
+# Fonction de chiffrement
 def repeatingkeyxor(buffer, cle):
     i = 0
     res = b''
@@ -44,7 +44,7 @@ def repeatingkeyxor(buffer, cle):
     return res
 
 
-# Décryptage d'une clé a un seul caractère
+# Déchiffrement d'une clé à un seul caractère
 def xoragainst(buffer, character):
     final = b""
     for j in buffer:
@@ -61,7 +61,7 @@ def evaluation(phrase):  # A quel point une phrase est-elle anglaise ?
     for key in frequency:
         compte[key] = 0
     for lettre in phrase:
-        if lettre > 255:  # Si on attends une phrase avec que des caractères alphadécimaux on peut mettre 127
+        if lettre > 255:  # Si on attend une phrase avec seulement des caractères alphanumériques on peut mettre 127
             return inf
         if lettre in compte:
             compte[lettre] += 1
@@ -80,7 +80,7 @@ def decryptagecle(buffer):
     res = "00"
     phrasef = ""
     for i in range(0, 128):
-        char = bytes([i])  # Attention, bytes prend un itérable d'où la liste a un élément
+        char = bytes([i])  # Attention, bytes prend un itérable d'où la liste à un élément
         phrase = xoragainst(buffer, char)
         e = evaluation(phrase)
         if e < evalu:
@@ -90,7 +90,7 @@ def decryptagecle(buffer):
     return res, phrasef, evalu
 
 
-# Decryptage d'un texte chiffré avec le codage en XOR a clé tournante
+# Déchiffrement d'un texte chiffré avec le codage en XOR à clé tournante
 def distance_hamming(bytes1, bytes2):
     b1 = HexToBinary(bytes1.hex())
     b2 = HexToBinary(bytes2.hex())
