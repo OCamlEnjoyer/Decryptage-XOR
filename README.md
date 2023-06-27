@@ -1,8 +1,8 @@
-# Decryptage XOR
+# Dechiffrement XOR
  Dechiffrement d'un cryptage XOR à clé tournante.
 
 ## Objectif
-Le cryptage *XOR a clé tournante* crypte un texte à l'aide d'une clé. Ces deux informations ne sont initiallement connu que par l'utilisateur ayant mis en place le cryptage. Notre objectif est de trouver la clé et ainsi de déchiffrer le texte à partir du texte encrypté seulement.
+Le chiffrement *XOR a clé tournante* chiffre un texte à l'aide d'une clé. Ces deux informations ne sont initiallement connu que par l'utilisateur ayant mis en place le chiffrement. Notre objectif est de trouver la clé et ainsi de déchiffrer le texte à partir du texte encrypté seulement.
 
 ## Présentation du chiffrement
 Chaque caractère de la clé et du texte est codé sur 8 bits (on utilisera le type bytes partout dans le code, je fournis cependant les fonctions convertissant une chaine de caractères en base 64 ou en hexadécimal vers ce type. Les caractères représentables en ASCII sont représentés ainsi, sinon ils sont représentées par \x suivi de leur valeur en hexadécimal. Par exemple le buffer hexadécimal '48656c6c6f20776f726c64' est le message b'Hello world' et '48656c6c6f00776f726c64', le message b'Hello\x00world'). \
