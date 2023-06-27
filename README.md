@@ -1,12 +1,12 @@
-# Dechiffrement XOR
- Dechiffrement d'un cryptage XOR à clé tournante.
+# Déchiffrement XOR
+ Décryptage d'un chiffrement XOR à clé tournante.
 
 ## Objectif
-Le chiffrement *XOR a clé tournante* chiffre un texte à l'aide d'une clé. Ces deux informations ne sont initiallement connu que par l'utilisateur ayant mis en place le chiffrement. Notre objectif est de trouver la clé et ainsi de déchiffrer le texte à partir du texte encrypté seulement.
+Le chiffrement *XOR a clé tournante* chiffre un texte en utilisant une clé. Ces deux informations ne sont initialement connues que par l'utilisateur ayant mis en place le chiffrement. Notre objectif est de trouver la clé et ainsi déchiffrer le texte à partir du texte chiffré seulement.
 
 ## Présentation du chiffrement
-Chaque caractère de la clé et du texte est codé sur 8 bits (on utilisera le type bytes partout dans le code, je fournis cependant les fonctions convertissant une chaine de caractères en base 64 ou en hexadécimal vers ce type. Les caractères représentables en ASCII sont représentés ainsi, sinon ils sont représentées par \x suivi de leur valeur en hexadécimal. Par exemple le buffer hexadécimal '48656c6c6f20776f726c64' est le message b'Hello world' et '48656c6c6f00776f726c64', le message b'Hello\x00world'). \
-Le cryptage mis ici en place viens effectué une disjonction exclusive (XOR) entre le premier caractère du message et de la clé puis entre le deuxième caractère du message et celui de la clé etc... Jusqu'à arriver au dernier caractère de la clé. Le prochain caractère du message est alors encrypté grace à un XOR avec le premier caractère de la clé puis le suivant avec le deuxième caractère etc... D'où le terme de clé *tournante*. \
+Chaque caractère de la clé et du texte est codé sur 8 bits (on utilisera le type bytes partout dans le code, je fournis cependant les fonctions convertissant une chaine de caractères en base 64 ou en hexadécimal vers ce type. Les caractères représentables en ASCII sont représentés ainsi, sinon ils sont représentés par \x suivi de leur valeur en hexadécimal. Par exemple, le buffer hexadécimal '48656c6c6f20776f726c64' est le message b'Hello world' et '48656c6c6f00776f726c64', le message b'Hello\x00world'). \
+Le chiffrement mis en place ici effectue une disjonction exclusive (XOR) entre le premier caractère du message et celui de la clé, puis entre le deuxième caractère du message et le deuxième de la clé etc. Jusqu'à arriver au dernier caractère de la clé. Le prochain caractère du message est alors chiffré grâce à un XOR avec le premier caractère de la clé, puis le suivant avec le deuxième caractère, etc. D'où le terme de clé *tournante*. \
 Chaque caractère étant 8 bits, effectuer un *XOR* (de signe ⊕) entre deux caractères revient à venir regarder si à la même position en écriture binaire (base 2), les deux caractères ont un même bit ou pas, si c'est le cas, le caractère résultant du XOR aura alors à cet emplacement (toujours en base 2), un 0, sinon un 1. Dans un soucis de lisibilité, on exprime ensuite ce caractère en base 256, en type bytes, comme expliqué précedemment.
 La fonction repeatingkeyxor effectue un tel cryptage.
 
